@@ -6,7 +6,7 @@ Webpack will bundle & compile everything under `src` to something your browser a
 
 ## get it
 ```bash
-> git clone <the url to this repo>
+> git clone https://github.com/arno-s/webpack-es6-starter.git
 > npm install
 > npm run serve
 ```
