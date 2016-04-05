@@ -1,5 +1,5 @@
 # webpack-es6-starter
-> simple no-nonsense starter kit for using webpack & es6 with whatever you can import
+> ez webpackin'
 
 This is a skeleton template for getting started with webpack and es6.  
 Webpack will bundle & compile everything under `src` to something your browser actually supports.  
