@@ -79,9 +79,15 @@ var config = {
       inject: 'body',
     }),
     new BrowserSyncPlugin({
+      // browse to http://localhost:8080/ during development,
+      // ./dist directory is being served
       host: 'localhost',
-      port: SERVER_PORT,
-      server: { baseDir: [DIST] },
+      port: 9000,
+
+      //server: { baseDir: ['dist'] },
+      proxy: 'http://localhost:8080',
+    }, {
+      reload: false,
     }),
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.DedupePlugin(),
