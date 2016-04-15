@@ -20,3 +20,6 @@ Webpack will bundle & compile everything under `src` to something your browser a
 ```bash
 > npm run ib        #npm install and runs build
 ```
+
+## important
+don't forget to remove jquery if you don't use it from the `package.json`.

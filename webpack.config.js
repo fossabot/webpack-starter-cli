@@ -1,137 +1,104 @@
 'use strict';
 
-// Modules
+//port you want to run webpack on
+var SERVER_PORT = 12345;
+
+//source folder
+var SRC = './src';
+
+//dist/build folder
+var DIST = './dist';
+
+//entry file relative to SRC-path
+var ENTRY_FILE = 'index.js';
+
+//inject build/dist files into this template
+var INJECT_FILE = '/index.html';
+
 var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var path = require('path');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
-/**
- * Env
- * Get npm lifecycle event to identify the environment
- */
-module.exports = function makeWebpackConfig() {
-  /**
-   * Config
-   * Reference: http://webpack.github.io/docs/configuration.html
-   * This is the object where all configuration gets set
-   */
-  var config = {};
+var config = {
 
-  config.entry = {
-    //change this if your entry is different
-    app: './src/index.js'
-  };
+  //entry point for the bundle
+  //if given a string: loads the module,
+  //if given an array: all modules will be loaded, the last one will be exported
+  //if given an object: chunks will be created,
+  //          the key is the chunkName & you can load arrays or strings.
+  entry: {
+    app: path.join(__dirname, SRC, ENTRY_FILE),
+  },
 
-  config.resolve = {
-    root: path.resolve('./src')
-  };
+  //options for the compiled output of the bundle
+  output: {
+    path: DIST,
+    filename: '[name].[hash].js',
+  },
 
-  config.output = {
-    // Absolute output directory
-    path: __dirname + '/dist',
+  //options for the development server
+  devServer: {
+    contentBase: SRC,
+    stats: 'all',
+  },
 
-    // Output path from the view of the page
-    // Uses webpack-dev-server in development
-    //publicPath: isProd ? '/' : 'http://localhost:8080/',
+  //enable source-mapping
+  devtool: 'source-map',
 
-    // Filename for entry points
-    // Only adds hash in build mode
-    filename: '[name].bundle.js',
-
-    // Filename for non-entry points
-    // Only adds hash in build mode
-    chunkFilename: '[name].bundle.js'
-  };
-
-  /**
-   * Devtool
-   * Reference: http://webpack.github.io/docs/configuration.html#devtool
-   * Type of sourcemap to use per build type
-   */
-  config.devtool = 'source-map';
-
-
-
-  /**
-   * Loaders
-   * Reference: http://webpack.github.io/docs/configuration.html#module-loaders
-   * List: http://webpack.github.io/docs/list-of-loaders.html
-   * This handles most of the magic responsible for converting modules
-   */
-
-  // Initialize module
-  config.module = {
+  module: {
     preLoaders: [],
+
+    //add in loaders for additional files to load
+    //e.g. JSONLoader
     loaders: [{
       test: /.js?$/,
       loader: 'babel-loader',
       exclude: /node_modules/,
       query: {
-        presets: ['es2015']
-      }
+        presets: ['es2015'],
+      },
     }, {
-      // HTML LOADER
-      // Reference: https://github.com/webpack/raw-loader
-      // Allow loading html through js
       test: /\.html$/,
-      loader: 'raw'
+      loader: 'raw',
     }, {
       test: /\.scss$/,
-      loaders: ["style", "css", "sass"],
-      exclude: /node_modules/
-    }]
-  };
+      loaders: ['style', 'css', 'sass'],
+      exclude: /node_modules/,
+    }],
+  },
 
-  /**
-   * Plugins
-   * Reference: http://webpack.github.io/docs/configuration.html#plugins
-   * List: http://webpack.github.io/docs/list-of-plugins.html
-   */
-  config.plugins = [];
-
-  // Reference: https://github.com/ampedandwired/html-webpack-plugin
-  config.plugins.push(
+  //add plugins to the compiler
+  plugins: [
+    new ExtractTextPlugin('[name].[hash].css', {
+      disable: false,
+    }),
     new HtmlWebpackPlugin({
-      template: './src/index.html',
-      inject: 'body'
+      template: path.join(SRC, INJECT_FILE),
+      inject: 'body',
     }),
-
     new BrowserSyncPlugin({
-      //webpack-dev-server will run on 8080 which will be the proxy here.
       host: 'localhost',
-      port: 9000,
-      proxy: 'http://localhost:8080'
-    }, {
-      reload: false
+      port: SERVER_PORT,
+      server: { baseDir: [DIST] },
     }),
-
-		new ExtractTextPlugin('[name].[hash].css')
-
-  );
-
-  // Add build specific plugins
-  config.plugins.push(
     new webpack.NoErrorsPlugin(),
-    new webpack.optimize.DedupePlugin()
-  );
+    new webpack.optimize.DedupePlugin(),
+  ],
 
-  /**
-   * Dev server configuration
-   * Reference: http://webpack.github.io/docs/configuration.html#devserver
-   * Reference: http://webpack.github.io/docs/webpack-dev-server.html
-   */
-  config.devServer = {
-    contentBase: './src',
-    stats: 'minimal'
-  };
+  //fallback dependencies to node_modules
+  resolveLoader: {
+    fallback: path.join(__dirname, 'node_modules'),
+  },
 
-  config.resolve = {
-    alias: {
-      'root': path.resolve(__dirname, "./src")
-    }
-  }
+  //resolve root alias
+  //cfr. https://webpack.github.io/docs/configuration.html#resolve-alias
+  resolve: {
+    alias:{
+      root: path.join(__dirname, SRC),
+    },
+  },
+};
 
-  return config;
-}();
+module.exports = config;

@@ -1,3 +1,5 @@
+//this file can also be used as your root angular.module
+//npm install packages and import them wherever you need
 import $ from 'jquery';
 import './style.scss';
 
