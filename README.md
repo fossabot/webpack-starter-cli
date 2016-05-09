@@ -4,6 +4,8 @@
 This is a skeleton template for getting started with webpack and es6.  
 Webpack will bundle & compile everything under `src` to something your browser actually supports.  
 
+This repo also contains [a react branch with a starter project](https://github.com/arno-s/webpack-es6-starter/tree/react).
+
 ## get it
 ```bash
 > git clone https://github.com/arno-s/webpack-es6-starter.git
