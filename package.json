@@ -1,6 +1,6 @@
 {
   "name": "webpack-es6-starter",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "getting started with webpack and es6",
   "main": "index.js",
   "scripts": {
