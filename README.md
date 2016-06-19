@@ -2,9 +2,11 @@
 > ez webpackin'
 
 This is a skeleton template for getting started with webpack es6 and npm.  
-With the [commands](#commands) listed here, Webpack will bundle & compile everything under `src` to something your browser actually supports.  
+With the [commands](#commands) listed here, webpack will bundle & compile everything under `src` to something your browser actually supports.  
 
-This repo also contains [a react branch with a starter project](https://github.com/arno-s/webpack-es6-starter/tree/react).
+## branches
+- [webpack-2 starter](https://github.com/arno-s/webpack-es6-starter/tree/webpack-2)
+- [react-starter](https://github.com/arno-s/webpack-es6-starter/tree/react).
 
 ## get it
 ```bash
@@ -23,8 +25,5 @@ This repo also contains [a react branch with a starter project](https://github.c
 > npm run ib        #run previous 2 commands
 ```
 
-## todo
-- set root-path for importing modules & fallback to /node-modules/
-
 ## important
-don't forget to remove jquery if you don't use it from the `package.json`.
+don't forget to remove unneeded dependencies if you don't use them from the `package.json`.

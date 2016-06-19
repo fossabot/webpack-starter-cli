@@ -1,6 +1,6 @@
 {
   "name": "webpack-starter",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "getting started with webpack and es6",
   "main": "index.js",
   "scripts": {
@@ -31,10 +31,10 @@
     "browser-sync-webpack-plugin": "^1.0.3",
     "css-loader": "^0.23.1",
     "extract-text-webpack-plugin": "^1.0.1",
-    "html-webpack-plugin": "^2.20.0",
-    "node-sass": "^3.4.2",
+    "html-webpack-plugin": "^2.22.0",
+    "node-sass": "^3.8.0",
     "raw-loader": "^0.5.1",
-    "sass-loader": "^3.2.0",
+    "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"

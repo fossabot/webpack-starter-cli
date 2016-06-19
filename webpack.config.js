@@ -45,7 +45,7 @@ var config = {
   },
 
   //enable source-mapping
-  devtool: 'source-map',
+  devtool: 'inline-source-map',
 
   module: {
     preLoaders: [],
