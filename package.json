@@ -4,7 +4,6 @@
   "description": "getting started with webpack and es6",
   "main": "index.js",
   "scripts": {
-    "ib": "npm install && npm run build",
     "build": "rm -rf dist && webpack --config webpack.config.js --inline --bail --progress",
     "serve": "webpack-dev-server --inline --progress"
   },
