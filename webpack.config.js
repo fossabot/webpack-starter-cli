@@ -53,7 +53,7 @@ var config = {
     //add in loaders for additional files to load
     //e.g. JSONLoader
     loaders: [{
-      test: /.js?$/,
+      test: /.js$/,
       loader: 'babel-loader',
       exclude: /node_modules/,
       query: {
