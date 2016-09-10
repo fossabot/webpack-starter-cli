@@ -66,7 +66,7 @@ var config = {
       test: /\.scss$/,
       loaders: ['style', 'css', 'sass'],
       exclude: /node_modules/,
-    }],
+    },],
   },
 
   //add plugins to the compiler
@@ -86,11 +86,18 @@ var config = {
 
       //server: { baseDir: ['dist'] },
       proxy: 'http://localhost:8080',
-    }, {
-      reload: false,
     }),
     new webpack.NoErrorsPlugin(),
-    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.DedupePlugin({
+      name: 'commons',
+      filename: 'commons.js',
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      mangle: true,
+      compress: {
+        warnings: false,
+      },
+    }),
   ],
 
   //fallback dependencies to node_modules
@@ -101,7 +108,7 @@ var config = {
   //resolve root alias
   //cfr. https://webpack.github.io/docs/configuration.html#resolve-alias
   resolve: {
-    alias:{
+    alias: {
       root: path.join(__dirname, SRC),
     },
   },
