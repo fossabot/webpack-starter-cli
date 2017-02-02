@@ -18,8 +18,6 @@
 ```
 
 ## notes
-This starter template assumes you're using webpack2.
-For webpack1, check <url>.
 
 The template comes with the following plugins so you can get started right away:
 
