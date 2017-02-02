@@ -1,27 +1,30 @@
-# webpack-starter
-> ez webpackin'
+# webpack starter kit
+> get started with webpack, es6 using production & development environments
 
-This is a skeleton template for getting started with webpack, es6 and npm.  
-With the [commands](#commands) listed here, webpack will bundle & compile everything under `src` to something your browser actually supports.  
-
-## branches
-- [webpack-2 starter](https://github.com/arnoschutijzer/webpack-es6-starter/tree/webpack-2)
-- [react-starter](https://github.com/arnoschutijzer/webpack-es6-starter/tree/react)
-- [electron-starter](https://github.com/arnoschutijzer/webpack-es6-starter/tree/electron)
+## pre-requisites
+- Node & NPM
 
 ## get it
-```bash
-> git clone https://github.com/arnoschutijzer/webpack-starter.git
+```
+> git clone
 > npm install
-> npm run serve
-```
-## <a id="commands"></a>commands
-```bash
-> npm run serve     #builds, watches & runs webpack-dev-server
-```
-```bash
-> npm run build     #builds to /dist/-folder for deployment
 ```
 
-## important
-don't forget to remove unneeded dependencies if you don't use them from the `package.json`.
+## commands
+```
+> npm run dev           # start a dev-server with BrowserSync
+> npm run prod          # compile to the dist folder
+> npm run clean:build   # clean the dist folder
+```
+
+## notes
+This starter template assumes you're using webpack2.
+For webpack1, check <url>.
+
+The template comes with the following plugins so you can get started right away:
+
+- Babel (with the latest preset, for easy transpiling)
+- BrowserSync
+- Sass-loader
+
+The template renders a 'Hello World' React application with one component using a sass-stylesheet.

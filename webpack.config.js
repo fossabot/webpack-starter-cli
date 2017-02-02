@@ -1,117 +1,65 @@
-'use strict';
+const SRC = './src';
+const DIST = './dist';
+const env = process.env;
+const path = require('path');
 
-//port you want to run webpack on
-var SERVER_PORT = 12345;
+// Config resolved from the NODE_ENV
+let resolvedConfig = {};
 
-//source folder
-var SRC = './src';
+// The default configuration
+// Properties in the default config will be overwritten by the resolved config
+let defaultConfig = {
+  entry: ['babel-polyfill', path.join(__dirname, SRC, 'index.jsx')],
 
-//dist/build folder
-var DIST = './dist';
-
-//entry file relative to SRC-path
-var ENTRY_FILE = 'index.js';
-
-//inject build/dist files into this template
-var INJECT_FILE = '/index.html';
-
-var webpack = require('webpack');
-var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-
-var config = {
-
-  //entry point for the bundle
-  //if given a string: loads the module,
-  //if given an array: all modules will be loaded, the last one will be exported
-  //if given an object: chunks will be created,
-  //          the key is the chunkName & you can load arrays or strings.
-  entry: {
-    app: path.join(__dirname, SRC, ENTRY_FILE),
-  },
-
-  //options for the compiled output of the bundle
   output: {
-    path: DIST,
-    filename: '[name].[hash].js',
+    filename: "[name].[chunkhash].js",
+    path: path.join(__dirname, DIST)
   },
-
-  //options for the development server
-  devServer: {
-    contentBase: SRC,
-    stats: 'all',
-  },
-
-  //enable source-mapping
-  devtool: 'inline-source-map',
 
   module: {
-    preLoaders: [],
-
-    //add in loaders for additional files to load
-    //e.g. JSONLoader
-    loaders: [{
-      test: /.js$/,
-      loader: 'babel-loader',
-      exclude: /node_modules/,
-      query: {
-        presets: ['es2015'],
-      },
-    }, {
+    rules: [{
       test: /\.html$/,
-      loader: 'raw',
+      loader: 'html-loader'
+    },{
+      test: /\.jsx?$/,
+      exclude: /node_modules/,
+      use: [{
+        loader: 'babel-loader',
+        options: {
+          presets: ['latest', 'react']
+        }
+      }]
     }, {
       test: /\.scss$/,
-      loaders: ['style', 'css', 'sass'],
       exclude: /node_modules/,
-    },],
-  },
-
-  //add plugins to the compiler
-  plugins: [
-    new ExtractTextPlugin('[name].[hash].css', {
-      disable: false,
-    }),
-    new HtmlWebpackPlugin({
-      template: path.join(SRC, INJECT_FILE),
-      inject: 'body',
-    }),
-    new BrowserSyncPlugin({
-      // browse to http://localhost:8080/ during development,
-      // ./dist directory is being served
-      host: 'localhost',
-      port: 9000,
-
-      //server: { baseDir: ['dist'] },
-      proxy: 'http://localhost:8080',
-    }),
-    new webpack.NoErrorsPlugin(),
-    new webpack.optimize.DedupePlugin({
-      name: 'commons',
-      filename: 'commons.js',
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      mangle: true,
-      compress: {
-        warnings: false,
-      },
-    }),
-  ],
-
-  //fallback dependencies to node_modules
-  resolveLoader: {
-    fallback: path.join(__dirname, 'node_modules'),
-  },
-
-  //resolve root alias
-  //cfr. https://webpack.github.io/docs/configuration.html#resolve-alias
-  resolve: {
-    alias: {
-      root: path.join(__dirname, SRC),
-    },
-  },
+      use: [{
+          loader: 'style-loader'
+        }, {
+          loader: 'css-loader'
+        }, {
+          loader: 'sass-loader',
+          options: {
+            outputStyle: 'compressed',
+            sourceMap: true,
+            sourceMapContents: true
+          }
+        }
+      ]
+    }]
+  }
 };
 
-module.exports = config;
+// Resolve the specified config from NODE_ENV
+switch (env.NODE_ENV) {
+  case 'production':
+    resolvedConfig = require('./webpack.prod.js');
+    break;
+  case 'development':
+    resolvedConfig = require('./webpack.dev.js');
+    break;
+  default:
+    resolvedConfig = {};
+}
+
+// Merge the default config with the resolved config and export it
+module.exports = Object.assign({}, defaultConfig, resolvedConfig);
