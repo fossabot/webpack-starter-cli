@@ -9,7 +9,7 @@ export default class Home extends React.Component {
   componentDidMount() { }
 
   componentWillMount() {
-    this.setState({herro: 1});
+    this.setState({welcomeText: 'Hello world!'});
   }
 
   componentWillUnmount() { }
@@ -20,7 +20,7 @@ export default class Home extends React.Component {
 
   render() {
     return (<div id="title">
-      Hello world!
+      { this.state.welcomeText }
     </div>)
   }
 }
