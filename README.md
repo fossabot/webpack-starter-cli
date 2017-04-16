@@ -14,7 +14,7 @@
 ```
 > npm run dev           # start a dev-server with BrowserSync
 > npm run prod          # bundle to the dist folder in production mode
-> npm run bundle        # create a webpack bundle in development mode
+> npm run dist          # create a webpack bundle in development mode
 > npm run clean:dist    #  clean the dist folder
 ```
 
