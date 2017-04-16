@@ -14,13 +14,15 @@ export default class Home extends React.Component {
 
   componentWillUnmount() { }
 
-  setState(state = { }) {
+  setState(state = {}) {
     this.state = state;
   }
 
   render() {
-    return (<div id="title">
-      { this.state.welcomeText }
-    </div>)
+    return (
+      <div id='title'>
+        { this.state.welcomeText }
+      </div>
+    );
   }
 }

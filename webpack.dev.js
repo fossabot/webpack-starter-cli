@@ -14,7 +14,7 @@ const BrowserSyncWebpackPlugin = require('browser-sync-webpack-plugin');
 
 module.exports = {
   devServer: {
-    contentBase: path.join(__dirname, './dist'),
+    contentBase: path.join(__dirname, DIST),
     clientLogLevel: 'info',
     quiet: true
   },

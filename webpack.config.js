@@ -3,7 +3,7 @@ const DIST = './dist';
 const path = require('path');
 const args = require('yargs').argv;
 
-// Config resolved from the NODE_ENV
+// Config resolved from args
 let resolvedConfig = {};
 
 // The default configuration
@@ -49,7 +49,7 @@ let defaultConfig = {
   }
 };
 
-// Resolve the specified config from NODE_ENV
+// Resolve the specified config from args
 switch (args.env) {
   case 'production':
     resolvedConfig = require('./webpack.prod.js');
