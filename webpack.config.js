@@ -1,7 +1,7 @@
 const SRC = './src';
 const DIST = './dist';
-const env = process.env;
 const path = require('path');
+const args = require('yargs').argv;
 
 // Config resolved from the NODE_ENV
 let resolvedConfig = {};
@@ -12,7 +12,7 @@ let defaultConfig = {
   entry: ['babel-polyfill', path.join(__dirname, SRC, 'index.jsx')],
 
   output: {
-    filename: "[name].[chunkhash].js",
+    filename: '[name].[chunkhash].js',
     path: path.join(__dirname, DIST)
   },
 
@@ -50,7 +50,7 @@ let defaultConfig = {
 };
 
 // Resolve the specified config from NODE_ENV
-switch (env.NODE_ENV) {
+switch (args.env) {
   case 'production':
     resolvedConfig = require('./webpack.prod.js');
     break;
