@@ -19,7 +19,7 @@ module.exports = {
     quiet: true
   },
 
-  devtool: 'inline-source-map',
+  devtool: 'cheap-module-source-map',
 
   plugins: [
     new HtmlWebpackPlugin({
