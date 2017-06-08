@@ -4,7 +4,7 @@ const path = require('path');
 
 // The default configuration
 // Properties in the default config will be overwritten by the resolved config
-let defaultConfig = {
+module.exports = {
   entry: ['babel-polyfill', path.join(__dirname, SRC, 'index.jsx')],
 
   output: {
@@ -43,12 +43,4 @@ let defaultConfig = {
       ]
     }]
   }
-};
-
-module.exports = (env) => {
-  // Resolve the config from ARGS
-  let resolvedConfig = require(path.join(__dirname, env));
-
-  // Merge the default config with the resolved config and export it
-  return Object.assign({}, defaultConfig, resolvedConfig);
 };

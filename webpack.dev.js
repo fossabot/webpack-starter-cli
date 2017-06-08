@@ -1,6 +1,7 @@
 const SRC = './src';
 const DIST = './dist';
 const PORT = 9000;
+const defaultConfig = require('./webpack.config');
 const path = require('path');
 // Import the dashboard UI
 const Dashboard = require('webpack-dashboard');
@@ -12,7 +13,7 @@ const dashboard = new Dashboard({
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BrowserSyncWebpackPlugin = require('browser-sync-webpack-plugin');
 
-module.exports = {
+const devConfig = {
   devServer: {
     contentBase: path.join(__dirname, DIST),
     clientLogLevel: 'info',
@@ -34,3 +35,5 @@ module.exports = {
     new DashboardPlugin(dashboard.setData)
   ]
 };
+
+module.exports = Object.assign({}, defaultConfig, devConfig);
