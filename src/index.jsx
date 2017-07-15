@@ -1,20 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Home from './home/index.jsx';
-import pkg from '../package.json';
+import './style.scss';
 
 ReactDOM.render(
-  <Home></Home>,
+  <div id="title">Hello world!</div>,
   document.getElementById('app')
 );
-
-// Small example of async/await function
-var foo = async function() {
-  console.info(await bar());
-};
-
-async function bar() {
-  return pkg.name + ' @ v' + pkg.version;
-}
-
-foo();
