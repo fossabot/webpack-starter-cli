@@ -22,24 +22,24 @@ module.exports = {
       use: [{
         loader: 'babel-loader',
         options: {
-          presets: ['latest', 'react']
+          presets: ['env', 'react']
         }
       }]
     }, {
       test: /\.scss$/,
       exclude: /node_modules/,
       use: [{
-          loader: 'style-loader'
-        }, {
-          loader: 'css-loader'
-        }, {
-          loader: 'sass-loader',
-          options: {
-            outputStyle: 'compressed',
-            sourceMap: true,
-            sourceMapContents: true
-          }
+        loader: 'style-loader'
+      }, {
+        loader: 'css-loader'
+      }, {
+        loader: 'sass-loader',
+        options: {
+          outputStyle: 'compressed',
+          sourceMap: true,
+          sourceMapContents: true
         }
+      }
       ]
     }]
   }
