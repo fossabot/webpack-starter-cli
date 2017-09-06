@@ -16,7 +16,10 @@ module.exports = {
     'react'
   ],
   'rules': {
-    'react/jsx-uses-react': 1,
+    'react/jsx-uses-react': 'error',
+    'react/jsx-uses-vars': 'error',
+    'object-curly-spacing': [ 2, 'always' ],
+    'array-bracket-spacing': [ 2, 'always' ],
     'indent': [
       'error',
       2
