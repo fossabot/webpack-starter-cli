@@ -5,7 +5,7 @@ const path = require('path');
 // The default configuration
 // Properties in the default config will be overwritten by the resolved config
 module.exports = {
-  entry: ['babel-polyfill', path.join(__dirname, SRC, 'index.jsx')],
+  entry: [ 'babel-polyfill', path.join(__dirname, SRC, 'index.jsx') ],
 
   output: {
     filename: '[name].[chunkhash].js',
@@ -13,22 +13,22 @@ module.exports = {
   },
 
   module: {
-    rules: [{
+    rules: [ {
       test: /\.html$/,
       loader: 'html-loader'
     },{
       test: /\.jsx?$/,
       exclude: /node_modules/,
-      use: [{
+      use: [ {
         loader: 'babel-loader',
         options: {
-          presets: ['env', 'react']
+          presets: [ 'env', 'react' ]
         }
-      }]
+      } ]
     }, {
       test: /\.scss$/,
       exclude: /node_modules/,
-      use: [{
+      use: [ {
         loader: 'style-loader'
       }, {
         loader: 'css-loader'
@@ -41,6 +41,10 @@ module.exports = {
         }
       }
       ]
-    }]
+    } ]
+  },
+
+  resolve: {
+    extensions: [ '.js', '.jsx' ]
   }
 };
