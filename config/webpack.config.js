@@ -5,7 +5,7 @@ const path = require('path');
 // The default configuration
 // Properties in the default config will be overwritten by the resolved config
 module.exports = {
-  entry: [ '@babel/polyfill', path.join(__dirname, SRC, 'index.jsx') ],
+  entry: [ '@babel/polyfill', path.join(__dirname, '..', SRC, 'index.jsx') ],
 
   output: {
     filename: '[name].[chunkhash].js',

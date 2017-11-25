@@ -8,7 +8,7 @@ const webpack = require('webpack');
 const prodConfig = {
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.join(SRC, 'index.html')
+      template: path.join(__dirname, '..', SRC, 'index.html')
     }),
     new webpack.DefinePlugin({
       'process.env': {
