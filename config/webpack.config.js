@@ -9,7 +9,7 @@ module.exports = {
 
   output: {
     filename: '[name].[chunkhash].js',
-    path: path.join(__dirname, DIST)
+    path: path.join(__dirname, '..', DIST)
   },
 
   module: {
