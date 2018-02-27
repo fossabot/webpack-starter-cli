@@ -1,15 +1,22 @@
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const BrowserSyncWebpackPlugin = require('browser-sync-webpack-plugin');
+
 const SRC = './src';
 const DIST = './dist';
-const path = require('path');
+const PORT = 9000;
 
-// The default configuration
-// Properties in the default config will be overwritten by the resolved config
 module.exports = {
-  entry: [ '@babel/polyfill', path.join(__dirname, '..', SRC, 'index.jsx') ],
+  devServer: {
+    contentBase: path.join(__dirname, DIST),
+    clientLogLevel: 'info'
+  },
+
+  entry: [ '@babel/polyfill', path.join(__dirname, SRC, 'index.jsx') ],
 
   output: {
     filename: '[name].[chunkhash].js',
-    path: path.join(__dirname, '..', DIST)
+    path: path.join(__dirname, DIST)
   },
 
   module: {
@@ -43,6 +50,18 @@ module.exports = {
       ]
     } ]
   },
+
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.join(SRC, 'index.html')
+    }),
+    new BrowserSyncWebpackPlugin({
+      // Don't show any output from BrowserSync
+      logLevel: 'silent',
+      port: PORT,
+      proxy: 'http://localhost:8080'
+    })
+  ],
 
   resolve: {
     extensions: [ '.js', '.jsx' ]

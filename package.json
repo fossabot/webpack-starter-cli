@@ -4,9 +4,9 @@
   "description": "webpack starter template",
   "main": "index.js",
   "scripts": {
-    "dev": "npm run clean:dist && webpack-dev-server --config ./config/webpack.dev.js",
+    "dev": "npm run clean:dist && webpack-dev-server --mode development",
     "prod": "npm run clean:dist && npm run dist",
-    "dist": "webpack --bail --progress --config ./config/webpack.prod.js",
+    "dist": "webpack --mode production --bail --progress",
     "clean:dist": "rimraf dist",
     "lint": "eslint src --ext .js .jsx",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -29,14 +29,15 @@
     "eslint": "^4.18.0",
     "eslint-plugin-react": "^7.4.0",
     "html-loader": "^0.5.5",
-    "html-webpack-plugin": "^2.29.0",
+    "html-webpack-plugin": "webpack-contrib/html-webpack-plugin",
     "node-sass": "^4.6.0",
     "rimraf": "^2.6.2",
     "sass-loader": "^6.0.5",
     "style-loader": "^0.20.2",
-    "webpack": "^3.10.0",
+    "webpack": "^4.0.1",
+    "webpack-cli": "^2.0.9",
     "webpack-dashboard": "^1.0.2",
-    "webpack-dev-server": "^2.11.0"
+    "webpack-dev-server": "^3.0.0"
   },
   "engines": {
     "node": ">=6.4.0"
