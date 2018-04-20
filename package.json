@@ -2,6 +2,12 @@
   "name": "@vleesbrood/webpack-starter-cli",
   "version": "0.0.4",
   "description": "webpack starter cli tool",
+  "keywords": [ 
+    "webpack",
+    "starter kit",
+    "cli",
+    "es7"
+  ],
   "bin": {
     "starter": "./lib/index.js"
   },
