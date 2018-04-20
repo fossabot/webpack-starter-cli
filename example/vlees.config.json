@@ -1,0 +1,6 @@
+{
+  "babelPresets": [
+    "@babel/preset-react"
+  ],
+  "entry": "index.jsx"
+}
