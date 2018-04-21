@@ -23,6 +23,11 @@ The cli assumes a folder layout like this:
 
 Use .babelrc to add babel presets!
 
+```bash
+# installing @babel/core is required if you need a custom preset
+$ npm install --save @babel/core @babel/preset-env
+```
+
 ```json
 {
   "presets": [
