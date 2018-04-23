@@ -10,6 +10,16 @@ npm install -g @vleesbrood/webpack-starter-cli
 
 - Node & NPM
 
+## commands
+
+```bash
+# start a hot-reloading server
+$ starter serve
+
+# build the project
+$ starter build
+```
+
 ## gotcha's
 
 The cli assumes a folder layout like this:
