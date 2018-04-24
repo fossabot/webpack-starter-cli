@@ -28,7 +28,7 @@ The cli assumes a folder layout like this:
  |- src/
  |- package.json
  |- .babelrc
- |- vlees.config.json
+ |- starter.config.json
 ```
 
 Use .babelrc to add babel presets!
