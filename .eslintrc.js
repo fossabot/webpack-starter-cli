@@ -7,17 +7,11 @@ module.exports = {
   'extends': 'eslint:recommended',
   'parserOptions': {
     'ecmaFeatures': {
-      'experimentalObjectRestSpread': true,
-      'jsx': true
+      'experimentalObjectRestSpread': true
     },
     'sourceType': 'module'
   },
-  'plugins': [
-    'react'
-  ],
   'rules': {
-    'react/jsx-uses-react': 'error',
-    'react/jsx-uses-vars': 'error',
     'object-curly-spacing': [ 2, 'always' ],
     'array-bracket-spacing': [ 2, 'always' ],
     'indent': [
