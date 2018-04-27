@@ -1,3 +1,8 @@
+const path = require('path');
+const SRC = 'src';
+
 module.exports = {
-    "entry": "index.jsx"
+    webpack: {
+        'entry': path.resolve(SRC, 'index.jsx')
+    }
 }

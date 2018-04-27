@@ -20,6 +20,47 @@ $ starter serve
 $ starter build
 ```
 
+## features
+
+### extend the configuration
+
+Use .babelrc to add babel presets!
+
+```json
+{
+  "presets": [
+    "@babel/preset-react"
+  ]
+}
+```
+
+Add in custom webpack configuration using `starter.config.js`:
+
+```javascript
+const path = require('path');
+const SRC = './src';
+
+const webpack = {
+  entry: 'index.jsx',
+
+  resolve: {
+      assets: path.join(__dirname, SRC, 'assets'),
+      components: path.join(__dirname, SRC, 'components'),
+      src: path.join(__dirname, SRC),
+      state: path.join(__dirname, SRC, 'state'),
+      views: path.join(__dirname, SRC, 'views')
+  }
+};
+
+module.exports = () => {
+  return {
+    webpack
+  };
+}
+```
+
+The custom configuration will be merged together with the default configuration.
+
 ## gotcha's
 
 The cli assumes a folder layout like this:
@@ -31,17 +72,15 @@ The cli assumes a folder layout like this:
  |- starter.config.json
 ```
 
-Use .babelrc to add babel presets!
+If you installed the cli globally, you have to add `@babel/core` to your `package.json` if you want to customize the `babel-loader`.
 
 ```bash
 # installing @babel/core is required if you need a custom preset
-$ npm install --save @babel/core @babel/preset-env
+$ npm install --save @babel/core @babel/preset-react
 ```
 
 ```json
 {
-  "presets": [
-    "@babel/preset-react"
-  ]
+  "presets": [ "@babel/preset-react" ]
 }
 ```
