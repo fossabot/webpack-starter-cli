@@ -3,6 +3,8 @@ const SRC = 'src';
 
 module.exports = {
   webpack: {
-    'entry': path.resolve(SRC, 'index.jsx')
+    'entry': [
+      path.resolve(SRC, 'index.jsx')
+    ]
   }
 };

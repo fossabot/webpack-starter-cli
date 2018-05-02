@@ -41,7 +41,10 @@ const path = require('path');
 const SRC = './src';
 
 const webpack = {
-  entry: 'index.jsx',
+  // IMPORTANT: this must be an array!
+  entry: [
+    'index.jsx'
+  ],
 
   resolve: {
       assets: path.join(__dirname, SRC, 'assets'),
@@ -65,7 +68,7 @@ The custom configuration will be merged together with the default configuration.
 
 The cli assumes a folder layout like this:
 
-```
+```dir
  |- src/
  |- package.json
  |- .babelrc
@@ -84,3 +87,5 @@ $ npm install --save @babel/core @babel/preset-react
   "presets": [ "@babel/preset-react" ]
 }
 ```
+
+The `entry` property MUST be an array!
